@@ -19,3 +19,14 @@ New-ADUser -Name "Susana" -Surname "Sotorres" -Path "OU=CONTABILIDAD,OU=Empresa,
 Import-Csv C:\Users\Administrador.EMPRESA-DC1\Desktop\usuarios.csv | foreach-object {
 $userprinicpalname = $_.nombre + “@gorge.local”
 New-ADUser -UserPrincipalName $userprinicpalname -Name $_.nombre -DisplayName $_.nombre -GivenName $_.nombre -SurName $_.apellido -Department $_.departamento -Path “OU=Ventas,OU=Empresa,DC=GORGE,DC=LOCAL” -AccountPassword (ConvertTo-SecureString “^*Test_2012;” -AsPlainText -force) -Enabled $True -PasswordNeverExpires $True -PassThru }
+
+#otro mas
+clear
+
+
+$usuarios= Import-Csv -Path "C:\Users\Administrador\Downloads\prueba1 - Full 1.csv"
+
+foreach ($i in $usuarios) {
+$PASSWORD= ConvertTo-secureString -AsPlainText -String "Chubbyemu01" -Force
+New-ADUser -Name $i.Displayname -GivenName $i.GiveName -SamAccountName $i.SamAccountName -AccountPassword $PASSWORD -Enabled $true
+}

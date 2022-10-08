@@ -30,3 +30,7 @@ foreach ($i in $usuarios) {
 $PASSWORD= ConvertTo-secureString -AsPlainText -String "Chubbyemu01" -Force
 New-ADUser -Name $i.Displayname -GivenName $i.GiveName -SamAccountName $i.SamAccountName -AccountPassword $PASSWORD -Enabled $true
 }
+
+
+mport-Csv C:\Users\Administrador.EMPRESA-DC1\Desktop\usuarios.csv | foreach-object {
+New-ADUser -Department $_.Department -UserPrincipalName $_.userPrincipalName -SurName $_.SurName -Path “OU=Empresa,DC=GORGE,DC=LOCAL” -AccountPassword (ConvertTo-SecureString “ABC123;” -AsPlainText -force) -Enabled $True -PasswordNeverExpires $True -PassThru }

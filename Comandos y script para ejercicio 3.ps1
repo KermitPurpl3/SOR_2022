@@ -29,6 +29,18 @@ foreach ($i in $USUARIOS) {
 $PASSWORD= ConvertTo-secureString -AsPlainText -String "A-S-O-2021" -Force
 New-ADUser -Name $i.nombre -SamAccountName $i.nombre -Surname $i.apellido -Path "OU=Empresa1,DC=GORGE,DC=LOCAL" -AccountPassword $PASSWORD -Enabled $true
 }
+///////////////////
+
+ clear
+
+$USUARIOS= Import-Csv -Path "C:\Users\Administrador.EMPRESA-DC1\Desktop\usuarios.csv"
+
+foreach ($i in $USUARIOS) {
+$PASSWORD= ConvertTo-secureString -AsPlainText -String "A-S-O-2021" -Force
+New-ADUser -Name $i.nombre -SamAccountName $i.nombre -Surname $i.apellido -Path "OU=Empresa,DC=GORGE,DC=LOCAL" -AccountPassword $PASSWORD -Enabled $true
+}
+
+///////////////////
 
 #O si no usar este
 $USUARIOS= Import-Csv -Path "C:\Users\Administrador.EMPRESA-DC1\Desktop\usuarios.csv"

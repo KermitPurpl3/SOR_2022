@@ -20,14 +20,14 @@ Import-Csv C:\Users\Administrador.EMPRESA-DC1\Desktop\usuarios.csv | foreach-obj
 $userprinicpalname = $_.nombre + “@gorge.local”
 New-ADUser -UserPrincipalName $userprinicpalname -Name $_.nombre -DisplayName $_.nombre -GivenName $_.nombre -SurName $_.apellido -Department $_.departamento -Path “OU=Ventas,OU=Empresa,DC=GORGE,DC=LOCAL” -AccountPassword (ConvertTo-SecureString “^*Test_2012;” -AsPlainText -force) -Enabled $True -PasswordNeverExpires $True -PassThru }
 
-#otro mas
+#Este es el bueno
 clear
 
 $USUARIOS= Import-Csv -Path "C:\Users\Administrador.EMPRESA-DC1\Desktop\usuarios.csv"
 
 foreach ($i in $USUARIOS) {
 $PASSWORD= ConvertTo-secureString -AsPlainText -String "A-S-O-2021" -Force
-New-ADUser -Name $i.nombre -SamAccountName $i.nombre -Path "OU=Empresa1,DC=GORGE,DC=LOCAL" -AccountPassword $PASSWORD -Enabled $true
+New-ADUser -Name $i.nombre -SamAccountName $i.nombre -Surname $i.apellido -Path "OU=Empresa1,DC=GORGE,DC=LOCAL" -AccountPassword $PASSWORD -Enabled $true
 }
 
 

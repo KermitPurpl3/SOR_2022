@@ -1,5 +1,5 @@
 #Nueva Unidad Organizativa
-New-OrganizationalUnit "Nombre"
+New-OrganizationalUnit "Nombre" -Path "OU=Nombre,DC=Nombre,DC=Nombre2"
 
 #Crear usuarios
 New-ADUser -Name "David" -Surname "Segarra" -Path "OU=VENTAS,OU=Empresa,DC=GORGE,DC=LOCAL"-AccountPassword (ConvertTo-SecureString "A-S-O-2021" -AsPlainText -Force ) -ChangePasswordAtLogon $False -Enabled $true
